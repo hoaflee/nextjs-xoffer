@@ -7,6 +7,7 @@ import { LoginDialogProvider } from 'src/components/settings';
 import { CampaignDetailsView } from 'src/sections/campaign/view';
 // ----------------------------------------------------------------------
 
+// https://nextjs.org/docs/app/building-your-application/optimizing/metadata
 export const metadata = {
   title: 'Campaign Details',
 };

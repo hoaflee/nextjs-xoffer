@@ -1,6 +1,5 @@
 'use client';
 
-import Head from 'next/head';
 import PropTypes from 'prop-types';
 import {
   useContext
@@ -52,16 +51,6 @@ export default function CampaignDetailsView({ id }) {
 
   const renderSkeleton = <CampaignDetailsSkeleton />;
 
-  const renderMetadata = campaign && (
-    <Head>
-      <title>xOffer - {campaign.title}</title>
-      <meta name="description" content={campaign.step_info_general.short_description} />
-      <meta property="og:title" content={`xOffer - ${campaign.title}`} />
-      <meta property="og:description" content={campaign.step_info_general.short_description} />
-      <meta property="og:image" content={campaign.banner_small_image} />
-    </Head>
-  )
-
   const renderError = (
     <EmptyContent
       filled
@@ -79,17 +68,6 @@ export default function CampaignDetailsView({ id }) {
       sx={{ py: 10 }}
     />
   );
-
-  // const renderMeta = campaign && (
-  //   <Helmet>
-  //     <title>xOffer - {campaign?.name}</title>
-  //     <meta name="description" content={campaign?.step_info_general?.short_description} />
-  //     <meta property="og:title" content={`xOffer - ${campaign?.name}`} />
-  //     <meta property="og:description" content={campaign?.step_info_general?.short_description} />
-  //     <meta property="og:image" content={campaign.banner_small_image} />
-  //     <meta property="og:image:alt" content={campaign?.step_info_general?.short_description} />
-  //   </Helmet>
-  // )
 
   const renderCampaign = campaign && (
     <>
@@ -212,10 +190,7 @@ export default function CampaignDetailsView({ id }) {
 
 
   return (
-    <>
-      {renderMetadata}
-
-      <Container
+    <Container
         maxWidth={settings.themeStretch ? false : 'lg'}
       >
 
@@ -230,9 +205,6 @@ export default function CampaignDetailsView({ id }) {
           handleClose={handleCloseLoginDialog}
         />
       </Container>
-    </>
-
-
   );
 }
 
