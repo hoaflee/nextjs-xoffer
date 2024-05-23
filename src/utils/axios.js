@@ -26,6 +26,10 @@ export const fetcher = async (args) => {
 // ----------------------------------------------------------------------
 
 export const endpoints = {
+  public: {
+    hotCampaigns: '/v1/public/shares/hot-and-recommend',
+    srcCampaigns: '/v1/campaigns/search'
+  },
   chat: '/api/chat',
   kanban: '/api/kanban',
   calendar: '/api/calendar',
@@ -48,6 +52,13 @@ export const endpoints = {
   product: {
     list: '/api/product/list',
     details: '/api/product/details',
+    search: '/api/product/search',
+  },
+  campaign: {
+    list: '/v1/campaigns/search',
+    details: '/v1/campaigns/',
+    questList: '/v1/campaigns/get-quests-detail/',
+    leaderboard: '/v1/campaigns/leaderboard',
     search: '/api/product/search',
   },
 };

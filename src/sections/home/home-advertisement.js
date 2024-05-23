@@ -6,11 +6,11 @@ import Button from '@mui/material/Button';
 import { useTheme } from '@mui/material/styles';
 import Container from '@mui/material/Container';
 
-import { paths } from 'src/routes/paths';
+// import { paths } from 'src/routes/paths';
 
 import { bgGradient } from 'src/theme/css';
 
-import Iconify from 'src/components/iconify';
+// import Iconify from 'src/components/iconify';
 import { varFade, MotionViewport } from 'src/components/animate';
 
 // ----------------------------------------------------------------------
@@ -33,7 +33,7 @@ export default function HomeAdvertisement() {
         sx={{ color: 'common.white', mb: 5, typography: 'h2' }}
       >
         Get started with
-        <br /> Minimal kit today
+        <br /> xOffer Membership today
       </Box>
 
       <Stack
@@ -46,33 +46,15 @@ export default function HomeAdvertisement() {
             color="inherit"
             size="large"
             variant="contained"
-            target="_blank"
-            rel="noopener"
-            href={paths.minimalUI}
+            // target="_blank"
+            // rel="noopener"
+            // href={paths.minimalUI}
             sx={{
               color: 'grey.800',
               bgcolor: 'common.white',
             }}
           >
-            Purchase Now
-          </Button>
-        </m.div>
-
-        <m.div variants={varFade().inRight}>
-          <Button
-            color="inherit"
-            size="large"
-            variant="outlined"
-            target="_blank"
-            rel="noopener"
-            href={paths.freeUI}
-            endIcon={<Iconify icon="eva:external-link-fill" width={16} sx={{ mr: 0.5 }} />}
-            sx={{
-              color: 'common.white',
-              '&:hover': { borderColor: 'currentColor' },
-            }}
-          >
-            Get Free Version
+            Upgrade Membership Now
           </Button>
         </m.div>
       </Stack>

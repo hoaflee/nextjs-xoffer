@@ -4,9 +4,12 @@ import Box from '@mui/material/Box';
 
 import { useResponsive } from 'src/hooks/use-responsive';
 
+import { useAuthContext } from 'src/auth/hooks';
+
 import { useSettingsContext } from 'src/components/settings';
 
 import { NAV, HEADER } from '../config-layout';
+
 
 // ----------------------------------------------------------------------
 
@@ -21,6 +24,9 @@ export default function Main({ children, sx, ...other }) {
 
   const isNavMini = settings.themeLayout === 'mini';
 
+  const { user } = useAuthContext();
+
+  // console.log("user: ", user)
   if (isNavHorizontal) {
     return (
       <Box
@@ -29,10 +35,10 @@ export default function Main({ children, sx, ...other }) {
           minHeight: 1,
           display: 'flex',
           flexDirection: 'column',
-          pt: `${HEADER.H_MOBILE + 24}px`,
+          pt: `${HEADER.H_MOBILE}px`,
           pb: 10,
           ...(lgUp && {
-            pt: `${HEADER.H_MOBILE * 2 + 40}px`,
+            pt: `${user ? HEADER.H_MOBILE * 2 + 40 : 110}px`,
             pb: 15,
           }),
         }}

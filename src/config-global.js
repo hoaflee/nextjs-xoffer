@@ -1,5 +1,9 @@
 import { paths } from 'src/routes/paths';
 
+// FAKE DATA
+export const TMP_BEARER =  process.env.NEXT_PUBLIC_FAKE_BEARER;
+export const TMP_VENDOR_ID = process.env.NEXT_PUBLIC_FAKE_VENDOR_ID;
+
 // API
 // ----------------------------------------------------------------------
 

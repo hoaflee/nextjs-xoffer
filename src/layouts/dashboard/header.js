@@ -8,25 +8,31 @@ import IconButton from '@mui/material/IconButton';
 
 import { useOffSetTop } from 'src/hooks/use-off-set-top';
 import { useResponsive } from 'src/hooks/use-responsive';
+import { useSettingsContext } from 'src/components/settings';
 
 import { bgBlur } from 'src/theme/css';
+import { useAuthContext } from 'src/auth/hooks';
 
 import Logo from 'src/components/logo';
 import SvgColor from 'src/components/svg-color';
-import { useSettingsContext } from 'src/components/settings';
 
 import Searchbar from '../common/searchbar';
+import NavDesktop from '../main/nav/desktop';
 import { NAV, HEADER } from '../config-layout';
-import SettingsButton from '../common/settings-button';
+import LoginButton from '../common/login-button';
+import { navConfig } from '../main/config-navigation';
+// import SettingsButton from '../common/settings-button';
 import AccountPopover from '../common/account-popover';
-import ContactsPopover from '../common/contacts-popover';
+// import ContactsPopover from '../common/contacts-popover';
 import LanguagePopover from '../common/language-popover';
-import NotificationsPopover from '../common/notifications-popover';
+// import NotificationsPopover from '../common/notifications-popover';
 
 // ----------------------------------------------------------------------
 
 export default function Header({ onOpenNav }) {
   const theme = useTheme();
+
+  const { user } = useAuthContext();
 
   const settings = useSettingsContext();
 
@@ -35,6 +41,8 @@ export default function Header({ onOpenNav }) {
   const isNavMini = settings.themeLayout === 'mini';
 
   const lgUp = useResponsive('up', 'lg');
+  const mdUp = useResponsive('up', 'md');
+
 
   const offset = useOffSetTop(HEADER.H_DESKTOP);
 
@@ -59,15 +67,19 @@ export default function Header({ onOpenNav }) {
         justifyContent="flex-end"
         spacing={{ xs: 0.5, sm: 1 }}
       >
+
+        {/* <NotificationsPopover /> */}
+
+        {/* <ContactsPopover /> */}
+
+        {/* <SettingsButton /> */}
+
+        {mdUp && <NavDesktop data={navConfig} />}
+
         <LanguagePopover />
 
-        <NotificationsPopover />
+        {user ? <AccountPopover /> : <LoginButton />}
 
-        <ContactsPopover />
-
-        <SettingsButton />
-
-        <AccountPopover />
       </Stack>
     </>
   );
@@ -104,7 +116,7 @@ export default function Header({ onOpenNav }) {
       <Toolbar
         sx={{
           height: 1,
-          px: { lg: 5 },
+          px: { lg: 10 },
         }}
       >
         {renderContent}

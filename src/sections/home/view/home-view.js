@@ -1,6 +1,8 @@
 'use client';
 
 import { useScroll } from 'framer-motion';
+import { useState, useEffect } from 'react';
+
 
 import Box from '@mui/material/Box';
 import { styled } from '@mui/material/styles';
@@ -8,6 +10,8 @@ import { styled } from '@mui/material/styles';
 import MainLayout from 'src/layouts/main';
 
 import ScrollProgress from 'src/components/scroll-progress';
+
+import axios, { endpoints } from 'src/utils/axios';
 
 import HomeHero from '../home-hero';
 import HomeMinimal from '../home-minimal';
@@ -19,6 +23,10 @@ import HomeColorPresets from '../home-color-presets';
 import HomeAdvertisement from '../home-advertisement';
 import HomeCleanInterfaces from '../home-clean-interfaces';
 import HomeHugePackElements from '../home-hugepack-elements';
+
+import { SplashScreen } from 'src/components/loading-screen';
+
+import RecommendedCampaigns from '../recommended-campaigns';
 
 // ----------------------------------------------------------------------
 
@@ -45,43 +53,70 @@ const StyledPolygon = styled('div')(({ anchor = 'top', theme }) => ({
 // ----------------------------------------------------------------------
 
 export default function HomeView() {
+  // const { scrollYProgress } = useScroll();
+  const [data, setData] = useState();
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      // setLoading(true)
+      const url = endpoints.public.hotCampaigns
+      try {
+        const response = await axios.get(url);
+        console.log("response: ", response)
+
+        setData(response.data)
+        setLoading(false)
+      } catch (error) {
+        console.error('Error fetching data:', error);
+        setLoading(false)
+      }
+    };
+
+    fetchData();
+  }, []);
+
+
   const { scrollYProgress } = useScroll();
 
   return (
     <MainLayout>
-      <ScrollProgress scrollYProgress={scrollYProgress} />
+      {/* <ScrollProgress scrollYProgress={scrollYProgress} /> */}
 
-      <HomeHero />
+      {loading ? <SplashScreen /> : (
+        <>
+          <HomeHero CampaignList={data.hotcampaign} />
 
-      <Box
-        sx={{
-          overflow: 'hidden',
-          position: 'relative',
-          bgcolor: 'background.default',
-        }}
-      >
-        <HomeMinimal />
+          <Box
+            sx={{
+              overflow: 'hidden',
+              position: 'relative',
+            }}
+          >
+            <RecommendedCampaigns title="Recommended Campaigns" subheader={`${data?.hotcampaign?.length} campaigns waiting for you`} list={data.hotcampaign} />
 
-        <HomeHugePackElements />
+            {/* <HomeSlider data={data.hotcampaign} /> */}
+            <HomeMinimal />
 
-        <Box sx={{ position: 'relative' }}>
-          <StyledPolygon />
-          <HomeForDesigner />
-          <StyledPolygon anchor="bottom" />
-        </Box>
+            {/* <HomeHugePackElements /> */}
 
-        <HomeDarkMode />
+            {/* <Box sx={{ position: 'relative' }}>
+              <StyledPolygon />
+              <HomeForDesigner />
+              <StyledPolygon anchor="bottom" />
+            </Box> */}
 
-        <HomeColorPresets />
+            {/* <HomeDarkMode />
+                <HomeColorPresets />
+                <HomeCleanInterfaces />
+                <HomePricing />
+                <HomeLookingFor /> */}
 
-        <HomeCleanInterfaces />
-
-        <HomePricing />
-
-        <HomeLookingFor />
-
-        <HomeAdvertisement />
-      </Box>
+            <HomeAdvertisement />
+          </Box>
+        </>
+      )
+      }
     </MainLayout>
   );
 }

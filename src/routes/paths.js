@@ -17,6 +17,8 @@ const ROOTS = {
 // ----------------------------------------------------------------------
 
 export const paths = {
+  login: '/login',
+  register: '/register',
   comingSoon: '/coming-soon',
   maintenance: '/maintenance',
   pricing: '/pricing',
@@ -50,6 +52,11 @@ export const paths = {
       details: `/post/${paramCase(MOCK_TITLE)}`,
     },
   },
+  campaign: {
+    root: '/campaign',
+    details: (id) => `/campaign/${id}`,
+  },
+  
   // AUTH
   auth: {
     amplify: {

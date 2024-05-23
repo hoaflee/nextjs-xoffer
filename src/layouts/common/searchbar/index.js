@@ -55,56 +55,56 @@ function Searchbar() {
 
   useEventListener('keydown', handleKeyDown);
 
-  const handleClick = useCallback(
-    (path) => {
-      if (path.includes('http')) {
-        window.open(path);
-      } else {
-        router.push(path);
-      }
-      handleClose();
-    },
-    [handleClose, router]
-  );
+  // const handleClick = useCallback(
+  //   (path) => {
+  //     if (path.includes('http')) {
+  //       window.open(path);
+  //     } else {
+  //       router.push(path);
+  //     }
+  //     handleClose();
+  //   },
+  //   [handleClose, router]
+  // );
 
   const handleSearch = useCallback((event) => {
     setSearchQuery(event.target.value);
   }, []);
 
-  const dataFiltered = applyFilter({
-    inputData: getAllItems({ data: navData }),
-    query: searchQuery,
-  });
+  // const dataFiltered = applyFilter({
+  //   inputData: getAllItems({ data: navData }),
+  //   query: searchQuery,
+  // });
 
-  const notFound = searchQuery && !dataFiltered.length;
+  // const notFound = searchQuery && !dataFiltered.length;
 
-  const renderItems = () => {
-    const data = groupedData(dataFiltered);
+  // const renderItems = () => {
+  //   const data = groupedData(dataFiltered);
 
-    return Object.keys(data)
-      .sort((a, b) => -b.localeCompare(a))
-      .map((group, index) => (
-        <List key={group || index} disablePadding>
-          {data[group].map((item) => {
-            const { title, path } = item;
+  //   return Object.keys(data)
+  //     .sort((a, b) => -b.localeCompare(a))
+  //     .map((group, index) => (
+  //       <List key={group || index} disablePadding>
+  //         {data[group].map((item) => {
+  //           const { title, path } = item;
 
-            const partsTitle = parse(title, match(title, searchQuery));
+  //           const partsTitle = parse(title, match(title, searchQuery));
 
-            const partsPath = parse(path, match(path, searchQuery));
+  //           const partsPath = parse(path, match(path, searchQuery));
 
-            return (
-              <ResultItem
-                path={partsPath}
-                title={partsTitle}
-                key={`${title}${path}`}
-                groupLabel={searchQuery && group}
-                onClickItem={() => handleClick(path)}
-              />
-            );
-          })}
-        </List>
-      ));
-  };
+  //           return (
+  //             <ResultItem
+  //               path={partsPath}
+  //               title={partsTitle}
+  //               key={`${title}${path}`}
+  //               groupLabel={searchQuery && group}
+  //               onClickItem={() => handleClick(path)}
+  //             />
+  //           );
+  //         })}
+  //       </List>
+  //     ));
+  // };
 
   const renderButton = (
     <Stack direction="row" alignItems="center">
@@ -112,7 +112,7 @@ function Searchbar() {
         <Iconify icon="eva:search-fill" />
       </IconButton>
 
-      {lgUp && <Label sx={{ px: 0.75, fontSize: 12, color: 'text.secondary' }}>⌘K</Label>}
+      {/* {lgUp && <Label sx={{ px: 0.75, fontSize: 12, color: 'text.secondary' }}>⌘K</Label>} */}
     </Stack>
   );
 
@@ -160,9 +160,9 @@ function Searchbar() {
           />
         </Box>
 
-        <Scrollbar sx={{ p: 3, pt: 2, height: 400 }}>
+        {/* <Scrollbar sx={{ p: 3, pt: 2, height: 400 }}>
           {notFound ? <SearchNotFound query={searchQuery} sx={{ py: 10 }} /> : renderItems()}
-        </Scrollbar>
+        </Scrollbar> */}
       </Dialog>
     </>
   );

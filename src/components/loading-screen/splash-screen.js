@@ -1,13 +1,31 @@
 import { m } from 'framer-motion';
 import PropTypes from 'prop-types';
-import { useState, useEffect } from 'react';
+// import { forwardRef } from 'react';
+import { useState, useEffect, forwardRef } from 'react';
 
 import Box from '@mui/material/Box';
+import Link from '@mui/material/Link';
 import { alpha } from '@mui/material/styles';
 
-import Logo from '../logo';
+// import Logo from '../logo';
 
 // ----------------------------------------------------------------------
+
+const LogoIcon = forwardRef(({ sx, ...other }, ref) => {
+  const logo = (
+    <Box
+      component="img"
+      src="/assets/xo.webp"
+      sx={{ width: 120, cursor: 'pointer', ...sx }}
+    />
+  );
+
+  return (
+    <Link href="/" sx={{ display: 'contents' }}>
+      {logo}
+    </Link>
+  );
+});
 
 export default function SplashScreen({ sx, ...other }) {
   const [mounted, setMounted] = useState(false);
@@ -50,7 +68,7 @@ export default function SplashScreen({ sx, ...other }) {
             repeat: Infinity,
           }}
         >
-          <Logo disabledLink sx={{ width: 64, height: 64 }} />
+          <LogoIcon disabledLink sx={{ width: 64, height: 64 }} />
         </m.div>
 
         <Box
@@ -96,5 +114,9 @@ export default function SplashScreen({ sx, ...other }) {
 }
 
 SplashScreen.propTypes = {
+  sx: PropTypes.object,
+};
+
+LogoIcon.propTypes = {
   sx: PropTypes.object,
 };

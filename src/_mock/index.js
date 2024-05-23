@@ -3,6 +3,7 @@ export * from './_mock';
 
 // ----------------------------------------------------------------------
 
+export * from './_campaign';
 export * from './_job';
 export * from './_user';
 export * from './_tour';

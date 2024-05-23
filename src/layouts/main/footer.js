@@ -21,7 +21,7 @@ import Iconify from 'src/components/iconify';
 
 const LINKS = [
   {
-    headline: 'Minimal',
+    headline: 'xOffer',
     children: [
       { name: 'About us', href: paths.about },
       { name: 'Contact us', href: paths.contact },
@@ -37,7 +37,7 @@ const LINKS = [
   },
   {
     headline: 'Contact',
-    children: [{ name: 'support@minimals.cc', href: '#' }],
+    children: [{ name: 'support@xoffer.io', href: '#' }],
   },
 ];
 
@@ -63,8 +63,6 @@ export default function Footer() {
 
         <Typography variant="caption" component="div">
           © All rights reserved
-          <br /> made by
-          <Link href="https://minimals.cc/"> minimals.cc </Link>
         </Typography>
       </Container>
     </Box>
@@ -104,8 +102,7 @@ export default function Footer() {
                 mx: { xs: 'auto', md: 'unset' },
               }}
             >
-              The starting point for your next project with Minimal UI Kit, built on the newest
-              version of Material-UI ©, ready to be customized to your style.
+              The starting point for your journey to earn online and passively through affiliate marketing campaigns.
             </Typography>
 
             <Stack
@@ -162,7 +159,7 @@ export default function Footer() {
         </Grid>
 
         <Typography variant="body2" sx={{ mt: 10 }}>
-          © 2021. All rights reserved
+          © {new Date().getFullYear()}. All rights reserved
         </Typography>
       </Container>
     </Box>

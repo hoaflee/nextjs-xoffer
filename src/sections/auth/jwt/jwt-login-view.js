@@ -1,5 +1,4 @@
 'use client';
-
 import * as Yup from 'yup';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
@@ -8,6 +7,9 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import Link from '@mui/material/Link';
 import Alert from '@mui/material/Alert';
 import Stack from '@mui/material/Stack';
+// import Button from '@mui/material/Button';
+import Divider from '@mui/material/Divider';
+// import { alpha } from '@mui/material/styles';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import LoadingButton from '@mui/lab/LoadingButton';
@@ -19,6 +21,7 @@ import { useRouter, useSearchParams } from 'src/routes/hooks';
 
 import { useBoolean } from 'src/hooks/use-boolean';
 
+import { bgGradient } from 'src/theme/css';
 import { useAuthContext } from 'src/auth/hooks';
 import { PATH_AFTER_LOGIN } from 'src/config-global';
 
@@ -46,8 +49,8 @@ export default function JwtLoginView() {
   });
 
   const defaultValues = {
-    email: 'demo@minimals.cc',
-    password: 'demo1234',
+    email: '', // 'demo@minimals.cc',
+    password: '' // 'demo1234',
   };
 
   const methods = useForm({
@@ -73,25 +76,80 @@ export default function JwtLoginView() {
     }
   });
 
-  const renderHead = (
-    <Stack spacing={2} sx={{ mb: 5 }}>
-      <Typography variant="h4">Sign in to Minimal</Typography>
+  // login bằng mạng xã hộij
+  const socialLogin = (
+    <Stack spacing={1.5}>
+      <LoadingButton
+        fullWidth
+        color="secondary"
+        // size="large"
+        variant="contained"
+        loading={isSubmitting}
+        startIcon={<Iconify icon="fluent:wallet-24-filled" width={24} />}
+        sx={{
+          ...bgGradient({
+            direction: "to right",
+            startColor: `#ff930f 0%`,
+            endColor: `#ffd642 100%`,
+          }),
+          '&:hover': {
+            cursor: 'not-allowed'
+          },
+          // bgcolor: (theme) => alpha(theme.palette.warning.main, 0.9),
+          // '&:hover': {
+          //   bgcolor: (theme) => alpha(theme.palette.warning.main, 0.7),
+          // },
+        }}
+      >
+        Continue with EVM Wallet
+      </LoadingButton>
 
-      <Stack direction="row" spacing={0.5}>
-        <Typography variant="body2">New user?</Typography>
+      <LoadingButton
+        fullWidth
+        color="secondary"
+        sx={{
+          ...bgGradient({
+            direction: "to right",
+            startColor: `#0061ff 0%`,
+            endColor: `#60efff 100%`,
+          }),
+          '&:hover': {
+            cursor: 'not-allowed'
+          },
+        }}
+        type="submit"
+        variant="contained"
+        startIcon={<img alt="icon" src="/assets/tokens/ton.png" width={24} />}
+        loading={isSubmitting}
+      >
+        Continue with TON Wallet
+      </LoadingButton>
 
-        <Link component={RouterLink} href={paths.auth.jwt.register} variant="subtitle2">
-          Create an account
-        </Link>
-      </Stack>
-    </Stack>
+      <LoadingButton
+        fullWidth
+        // color="secondary"
+        type="submit"
+        variant="outlined"
+        loading={isSubmitting}
+        startIcon={<img alt="icon" src="/assets/icons/app/google.png" width={24} />}
+        sx={{
+          '&:hover': {
+            cursor: 'not-allowed'
+          },
+        }}
+      >
+        Continue with Google
+      </LoadingButton>
+
+    </Stack >
   );
 
   const renderForm = (
-    <Stack spacing={2.5}>
-      <RHFTextField name="email" label="Email address" />
+    <Stack spacing={1.5}>
+      <RHFTextField name="email" size="small" label="Email address" />
 
       <RHFTextField
+        size="small"
         name="password"
         label="Password"
         type={password.value ? 'text' : 'password'}
@@ -106,14 +164,14 @@ export default function JwtLoginView() {
         }}
       />
 
-      <Link variant="body2" color="inherit" underline="always" sx={{ alignSelf: 'flex-end' }}>
+      {/* <Link variant="body2" color="inherit" underline="always" sx={{ alignSelf: 'flex-end' }}>
         Forgot password?
-      </Link>
+      </Link> */}
 
       <LoadingButton
         fullWidth
         color="inherit"
-        size="large"
+        // size="large"
         type="submit"
         variant="contained"
         loading={isSubmitting}
@@ -125,11 +183,23 @@ export default function JwtLoginView() {
 
   return (
     <>
-      {renderHead}
 
-      <Alert severity="info" sx={{ mb: 3 }}>
+      <Stack spacing={1} sx={{ mb: 2 }}>
+        <Typography variant="h4">Sign in to xOffer</Typography>
+        <Typography variant="caption" sx={{ color: 'grey' }}>Sign-in to your account and start the adventure</Typography>
+      </Stack>
+
+      {socialLogin}
+
+      <Divider sx={{ borderStyle: 'dashed', my: 0.5 }} > <Typography variant="caption" sx={{ color: 'grey' }}>Or</Typography> </Divider>
+
+      {/* <Stack spacing={2} sx={{ my: 1 }}>
+        <Typography variant="caption">Login with email</Typography>
+      </Stack> */}
+
+      {/* <Alert severity="info" sx={{ mb: 3 }}>
         Use email : <strong>demo@minimals.cc</strong> / password :<strong> demo1234</strong>
-      </Alert>
+      </Alert> */}
 
       {!!errorMsg && (
         <Alert severity="error" sx={{ mb: 3 }}>
@@ -140,6 +210,15 @@ export default function JwtLoginView() {
       <FormProvider methods={methods} onSubmit={onSubmit}>
         {renderForm}
       </FormProvider>
+
+      <Stack component="span" direction="row" alignItems="center" justifyContent="center" sx={{ mt: 1.5 }}>
+        {/* <Typography variant="body2">New user?</Typography> */}
+
+        <Link component={RouterLink} href={paths.register} variant="subtitle2">
+          Create an account with your email
+        </Link>
+      </Stack>
+
     </>
   );
 }

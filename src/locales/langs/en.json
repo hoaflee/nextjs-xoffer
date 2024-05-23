@@ -1,4 +1,7 @@
 {
+  "type_id_62": "Airdrop",
+  "type_id_70": "Install App",
+  "type_id_71": "Register Account",
   "app": "app",
   "job": "job",
   "user": "user",

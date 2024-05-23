@@ -93,6 +93,18 @@ export function fShortenNumber(inputValue) {
 
 // ----------------------------------------------------------------------
 
+export function fShortenWalletAddress(address) {
+  if (!address) return '';
+  if (address.length < 10) {
+    return address; // If the address is too short to shorten, return it as is.
+  }
+  const start = address.substring(0, 5);
+  const end = address.substring(address.length - 4);
+  return `${start}...${end}`;
+}
+
+// ----------------------------------------------------------------------
+
 export function fData(inputValue) {
   if (!inputValue) return '';
 
