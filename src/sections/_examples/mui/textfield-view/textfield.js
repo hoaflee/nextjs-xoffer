@@ -59,7 +59,7 @@ export default function Textfield({ variant }) {
           required
           fullWidth
           label="Activated"
-          defaultValue="Hello Minimal"
+          defaultValue="Hello xOffer"
         />
 
         <TextField
@@ -75,7 +75,7 @@ export default function Textfield({ variant }) {
           disabled
           fullWidth
           label="Disabled"
-          defaultValue="Hello Minimal"
+          defaultValue="Hello xOffer"
         />
       </ComponentBlock>
 
@@ -98,7 +98,7 @@ export default function Textfield({ variant }) {
           disabled
           fullWidth
           label="Disabled"
-          defaultValue="Hello Minimal"
+          defaultValue="Hello xOffer"
           InputProps={{
             startAdornment: (
               <InputAdornment position="start">
@@ -165,7 +165,7 @@ export default function Textfield({ variant }) {
           variant={variant}
           fullWidth
           label="Error"
-          defaultValue="Hello Minimal"
+          defaultValue="Hello xOffer"
           helperText="Incorrect entry."
         />
 
@@ -174,7 +174,7 @@ export default function Textfield({ variant }) {
           error
           fullWidth
           label="Error"
-          defaultValue="Hello Minimal"
+          defaultValue="Hello xOffer"
           helperText="Incorrect entry."
         />
       </ComponentBlock>

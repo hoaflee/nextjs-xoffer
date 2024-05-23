@@ -1,5 +1,6 @@
 'use client';
 
+import Head from 'next/head';
 import PropTypes from 'prop-types';
 import {
   useContext
@@ -47,9 +48,19 @@ export default function CampaignDetailsView({ id }) {
 
   const { campaign, campaignLoading, campaignError } = useGetCampaign(id);
 
-  // console.log("CampaignDetailsView: ", campaign)
+  console.log("CampaignDetailsView: ", campaign)
 
   const renderSkeleton = <CampaignDetailsSkeleton />;
+
+  const renderMetadata = campaign && (
+    <Head>
+      <title>xOffer - {campaign.title}</title>
+      <meta name="description" content={campaign.step_info_general.short_description} />
+      <meta property="og:title" content={`xOffer - ${campaign.title}`} />
+      <meta property="og:description" content={campaign.step_info_general.short_description} />
+      <meta property="og:image" content={campaign.banner_small_image} />
+    </Head>
+  )
 
   const renderError = (
     <EmptyContent
@@ -202,7 +213,7 @@ export default function CampaignDetailsView({ id }) {
 
   return (
     <>
-      {/* {renderMeta} */}
+      {renderMetadata}
 
       <Container
         maxWidth={settings.themeStretch ? false : 'lg'}

@@ -1,9 +1,6 @@
-import parse from 'autosuggest-highlight/parse';
-import match from 'autosuggest-highlight/match';
 import { memo, useState, useCallback } from 'react';
 
 import Box from '@mui/material/Box';
-import List from '@mui/material/List';
 import Stack from '@mui/material/Stack';
 import { useTheme } from '@mui/material/styles';
 import InputBase from '@mui/material/InputBase';
@@ -11,35 +8,27 @@ import IconButton from '@mui/material/IconButton';
 import InputAdornment from '@mui/material/InputAdornment';
 import Dialog, { dialogClasses } from '@mui/material/Dialog';
 
-import { useRouter } from 'src/routes/hooks';
-
 import { useBoolean } from 'src/hooks/use-boolean';
-import { useResponsive } from 'src/hooks/use-responsive';
 import { useEventListener } from 'src/hooks/use-event-listener';
 
 import Label from 'src/components/label';
 import Iconify from 'src/components/iconify';
-import Scrollbar from 'src/components/scrollbar';
-import SearchNotFound from 'src/components/search-not-found';
 
-import ResultItem from './result-item';
-import { useNavData } from '../../dashboard/config-navigation';
-import { applyFilter, groupedData, getAllItems } from './utils';
 
 // ----------------------------------------------------------------------
 
 function Searchbar() {
   const theme = useTheme();
 
-  const router = useRouter();
+  // const router = useRouter();
 
   const search = useBoolean();
 
-  const lgUp = useResponsive('up', 'lg');
+  // const lgUp = useResponsive('up', 'lg');
 
   const [searchQuery, setSearchQuery] = useState('');
 
-  const navData = useNavData();
+  // const navData = useNavData();
 
   const handleClose = useCallback(() => {
     search.onFalse();

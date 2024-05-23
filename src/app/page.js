@@ -3,7 +3,7 @@ import { HomeView } from 'src/sections/home/view';
 // ----------------------------------------------------------------------
 
 export const metadata = {
-  title: 'Minimal: The starting point for your next project',
+  title: 'xOffer: The starting point for your next journey',
 };
 
 export default function HomePage() {

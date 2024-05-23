@@ -2,9 +2,9 @@ import PropTypes from 'prop-types';
 
 import axios, { endpoints } from 'src/utils/axios';
 
-import { CampaignDetailsView } from 'src/sections/campaign/view';
-
 import { LoginDialogProvider } from 'src/components/settings';
+
+import { CampaignDetailsView } from 'src/sections/campaign/view';
 // ----------------------------------------------------------------------
 
 export const metadata = {

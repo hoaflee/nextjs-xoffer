@@ -2,7 +2,6 @@ import Box from '@mui/material/Box';
 import Link from '@mui/material/Link';
 import Stack from '@mui/material/Stack';
 import AppBar from '@mui/material/AppBar';
-import Button from '@mui/material/Button';
 import Toolbar from '@mui/material/Toolbar';
 import { useTheme } from '@mui/material/styles';
 import Container from '@mui/material/Container';
@@ -24,7 +23,6 @@ import { HEADER } from '../config-layout';
 import { navConfig } from './config-navigation';
 import LoginButton from '../common/login-button';
 import HeaderShadow from '../common/header-shadow';
-import SettingsButton from '../common/settings-button';
 
 // ----------------------------------------------------------------------
 export default function Header() {

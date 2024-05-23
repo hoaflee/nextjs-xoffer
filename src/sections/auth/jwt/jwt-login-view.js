@@ -50,7 +50,7 @@ export default function JwtLoginView() {
   });
 
   const defaultValues = {
-    email: '', // 'demo@minimals.cc',
+    email: '', // 'demo@xOffers.cc',
     password: '' // 'demo1234',
   };
 
@@ -199,7 +199,7 @@ export default function JwtLoginView() {
       </Stack> */}
 
       {/* <Alert severity="info" sx={{ mb: 3 }}>
-        Use email : <strong>demo@minimals.cc</strong> / password :<strong> demo1234</strong>
+        Use email : <strong>demo@xOffers.cc</strong> / password :<strong> demo1234</strong>
       </Alert> */}
 
       {!!errorMsg && (
