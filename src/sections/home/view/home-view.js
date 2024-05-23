@@ -13,6 +13,8 @@ import ScrollProgress from 'src/components/scroll-progress';
 
 import axios, { endpoints } from 'src/utils/axios';
 
+import { SplashScreen } from 'src/components/loading-screen';
+
 import HomeHero from '../home-hero';
 import HomeMinimal from '../home-minimal';
 import HomePricing from '../home-pricing';
@@ -23,8 +25,6 @@ import HomeColorPresets from '../home-color-presets';
 import HomeAdvertisement from '../home-advertisement';
 import HomeCleanInterfaces from '../home-clean-interfaces';
 import HomeHugePackElements from '../home-hugepack-elements';
-
-import { SplashScreen } from 'src/components/loading-screen';
 
 import RecommendedCampaigns from '../recommended-campaigns';
 

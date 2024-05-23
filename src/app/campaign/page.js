@@ -7,5 +7,5 @@ export const metadata = {
 };
 
 export default function ShopPage() {
-  return <CampaignListView showBreadcrumbs={true} />;
+  return <CampaignListView showBreadcrumbs />;
 }
