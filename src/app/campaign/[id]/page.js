@@ -8,6 +8,8 @@ import { CampaignDetailsView } from 'src/sections/campaign/view';
 // ----------------------------------------------------------------------
 
 // https://nextjs.org/docs/app/building-your-application/optimizing/metadata
+// https://nextjs.org/docs/app/api-reference/functions/generate-metadata
+
 export const metadata = {
   title: 'Campaign Details',
 };
