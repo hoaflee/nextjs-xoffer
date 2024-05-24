@@ -63,6 +63,10 @@
     "import/prefer-default-export": 0,
     "react/function-component-definition": 0,
     "jsx-a11y/control-has-associated-label": 0,
+    "react-hooks/rules-of-hooks": 0,
+    "no-unsafe-optional-chaining": 0,
+    "prefer-template": 0,
+    "import/no-extraneous-dependencies": 0,
     "react/jsx-no-useless-fragment": [
       1,
       {

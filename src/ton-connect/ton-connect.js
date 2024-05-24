@@ -1,19 +1,18 @@
-import { useTonConnectUI } from "@tonconnect/ui-react";
+import { useTonConnectUI, useTonWallet } from "@tonconnect/ui-react";
 import { useState } from "react";
-import { loginByTon } from "src/api/login-ton";
+import { loginByTon } from "src/api/login-api";
 import { toUserFriendlyAddress } from "@tonconnect/sdk";
 import { useRouter, useSearchParams } from 'src/routes/hooks';
 
 export function connectTonWallet() {
     const [loadingConnect, setLoadingConnect] = useState(false);
     const [tonConnectUI] = useTonConnectUI();
-    const router = useRouter();
     const searchParams = useSearchParams();
-
+    const wallet = useTonWallet();
     const connect = () => {
         setLoadingConnect(true);
         tonConnectUI.connectWallet().then(async res => {
-            let data = {
+            const data = {
                 ref_code: '',
                 public_address: toUserFriendlyAddress(res.account.address),
                 device_token: "",
@@ -32,7 +31,9 @@ export function connectTonWallet() {
         });
     };
     const disconnect = () => {
-        tonConnectUI.disconnect();
+        if(wallet?.account){
+            tonConnectUI.disconnect();
+        }
     };
 
     return { loadingConnect, connect, disconnect }
