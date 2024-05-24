@@ -24,11 +24,11 @@ import Carousel, { useCarousel, CarouselArrows } from 'src/components/carousel';
 
 // ----------------------------------------------------------------------
 
-export default function RecommendedCampaigns({ title, subheader, list, sx, ...other }) {
+export default function ListCampaignsCarouselArrows({ title, subheader, list, sx, ...other }) {
   const theme = useTheme();
 
   const carousel = useCarousel({
-    slidesToShow: 3,
+    slidesToShow: list.length <= 3 ? list.length : 3,
     responsive: [
       {
         breakpoint: theme.breakpoints.values.lg,
@@ -52,37 +52,40 @@ export default function RecommendedCampaigns({ title, subheader, list, sx, ...ot
   });
 
   return (
-    <Container
-      component={MotionViewport}
-      sx={{
-        py: { xs: 2, md: 5 },
-        // pb: {xs: 2, md: 0},
-        px: 2,
-      }}
-    >
-      <Box sx={{ py: 2, ...sx }} {...other}>
-        <CardHeader
-          title={title}
-          subheader={subheader}
-          action={<CarouselArrows onNext={carousel.onNext} onPrev={carousel.onPrev} />}
+    <>
+      {list.length === 0 ? null : (
+        <Container
+          component={MotionViewport}
           sx={{
-            p: 0,
-            mb: 3,
+            py: { xs: 2, md: 5 },
+            // pb: {xs: 2, md: 0},
+            px: 2,
           }}
-        />
+        >
+          <Box sx={{ pt: 2, ...sx }} {...other}>
+            <CardHeader
+              title={title}
+              subheader={subheader}
+              action={<CarouselArrows onNext={carousel.onNext} onPrev={carousel.onPrev} />}
+              sx={{
+                p: 0,
+                mb: 3,
+              }}
+            />
 
-        <Carousel ref={carousel.carouselRef} {...carousel.carouselSettings}>
-          {list.map((item) => (
-            <RecommendItem key={item.id} item={item} />
-          ))}
-        </Carousel>
-      </Box>
-    </Container>
-
+            <Carousel ref={carousel.carouselRef} {...carousel.carouselSettings}>
+              {list.map((item) => (
+                <CampaignItem key={item.id} item={item} />
+              ))}
+            </Carousel>
+          </Box>
+        </Container>
+      )}
+    </>
   );
 }
 
-RecommendedCampaigns.propTypes = {
+ListCampaignsCarouselArrows.propTypes = {
   list: PropTypes.array,
   subheader: PropTypes.string,
   sx: PropTypes.object,
@@ -91,28 +94,16 @@ RecommendedCampaigns.propTypes = {
 
 // ----------------------------------------------------------------------
 
-function RecommendItem({ item }) {
+function CampaignItem({ item }) {
   const router = useRouter();
 
-  const {
-    model_id,
-    name_type,
-    campaign,
-    title,
-    isHot = true,
-    user_completed,
-  } = item;
+  const { model_id, name_type, campaign, title, isHot = true, user_completed } = item;
 
-  const handleView = useCallback(
-    () => {
-      router.push(paths.campaign.details(model_id));
-    },
-    [model_id, router]
-  );
+  const handleView = useCallback(() => {
+    router.push(paths.campaign.details(model_id));
+  }, [model_id, router]);
 
-  console.log("RecommendItem: ", item)
-
-
+  // console.log("RecommendItem: ", item)
 
   return (
     <Paper
@@ -159,11 +150,13 @@ function RecommendItem({ item }) {
         >
           <Stack direction="row" alignItems="center">
             <Iconify width={16} icon="solar:calendar-date-bold" sx={{ mr: 0.5, flexShrink: 0 }} />
-            {fDateTime(new Date())}
+            {
+              // fDateTime(new Date())
+              campaign.created_at
+            }
           </Stack>
 
           <Stack direction="row" alignItems="center">
-
             <Iconify
               width={16}
               icon="solar:users-group-rounded-bold"
@@ -183,7 +176,8 @@ function RecommendItem({ item }) {
           position: 'absolute',
         }}
       >
-        {isHot && '🔥'} {fNumber(campaign.step_reward_policy.your_budget)} ${campaign.step_reward_policy.airTokenName}
+        {isHot && '🔥'} {fNumber(campaign.step_reward_policy.your_budget)} $
+        {campaign.step_reward_policy.airTokenName}
       </Label>
 
       <Box sx={{ p: 1, position: 'relative' }}>
@@ -194,6 +188,6 @@ function RecommendItem({ item }) {
   );
 }
 
-RecommendItem.propTypes = {
+CampaignItem.propTypes = {
   item: PropTypes.object,
 };

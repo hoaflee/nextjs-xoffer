@@ -13,7 +13,7 @@ import { SplashScreen } from 'src/components/loading-screen';
 import HomeHero from '../home-hero';
 import HomeMinimal from '../home-minimal';
 import HomeAdvertisement from '../home-advertisement';
-import RecommendedCampaigns from '../recommended-campaigns';
+import ListCampaignsCarouselArrows from '../list-campaigns-carousel-arrows';
 
 // ----------------------------------------------------------------------
 
@@ -28,7 +28,7 @@ export default function HomeView() {
       const url = endpoints.public.hotCampaigns
       try {
         const response = await axios.get(url);
-        console.log("response: ", response)
+        console.log("response fetchData: ", response)
 
         setData(response.data)
         setLoading(false)
@@ -55,10 +55,14 @@ export default function HomeView() {
               position: 'relative',
             }}
           >
-            <RecommendedCampaigns title="Recommended Campaigns" subheader={`${data?.hotcampaign?.length} campaigns waiting for you`} list={data.hotcampaign} />
+            {/* Hot and Recommend */}
+            <ListCampaignsCarouselArrows title="Hot Campaigns" subheader={`${data?.hotcampaign?.length} campaigns waiting for you`} list={data.hotcampaign} />
+            <ListCampaignsCarouselArrows title="Recommended Campaigns" subheader={`${data?.recommend?.length} campaigns waiting for you`} list={data.recommend} />
+            {/* Các campaign đang chạy, không nằm trong 2 danh sách trên */}
+            {/* <ListCampaignsCarouselArrows title="All Campaigns" subheader={`${data?.all?.length} campaigns waiting for you`} list={data.all} /> */}
 
             {/* <HomeSlider data={data.hotcampaign} /> */}
-            <HomeMinimal />
+            <HomeMinimal/>
 
             {/* <HomeHugePackElements /> */}
 
