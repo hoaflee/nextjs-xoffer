@@ -28,12 +28,13 @@ import { PATH_AFTER_LOGIN } from 'src/config-global';
 
 import Iconify from 'src/components/iconify';
 import FormProvider, { RHFTextField } from 'src/components/hook-form';
+import { connectTonWallet } from 'src/ton-connect/ton-connect';
 
 // ----------------------------------------------------------------------
 
 export default function JwtLoginView() {
   const { login } = useAuthContext();
-
+  const { connect, loadingConnect } = connectTonWallet();
   const router = useRouter();
 
   const [errorMsg, setErrorMsg] = useState('');
@@ -115,17 +116,17 @@ export default function JwtLoginView() {
             endColor: `#60efff 100%`,
           }),
           '&:hover': {
-            cursor: 'not-allowed'
+            cursor: loadingConnect ?'not-allowed' : 'pointer'
           },
         }}
         type="submit"
         variant="contained"
         startIcon={<img alt="icon" src="/assets/tokens/ton.png" width={24} />}
         loading={isSubmitting}
+        onClick={connect}
       >
-        Continue with TON Wallet
+        {!loadingConnect ? 'Continue with TON Wallet' : 'Connecting ...'}
       </LoadingButton>
-
       <LoadingButton
         fullWidth
         // color="secondary"

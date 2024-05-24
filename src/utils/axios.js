@@ -22,7 +22,6 @@ export const fetcher = async (args) => {
 
   return res.data;
 };
-
 // ----------------------------------------------------------------------
 
 export const endpoints = {
@@ -34,9 +33,10 @@ export const endpoints = {
   kanban: '/api/kanban',
   calendar: '/api/calendar',
   auth: {
-    me: '/api/auth/me',
+    me: '/v1/users',
     login: '/api/auth/login',
     register: '/api/auth/register',
+    loginTon: '/v1/login-ton'
   },
   mail: {
     list: '/api/mail/list',
