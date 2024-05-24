@@ -55,18 +55,14 @@ const STORAGE_KEY = 'accessToken';
 
 export function AuthProvider({ children }) {
   const [state, dispatch] = useReducer(reducer, initialState);
-
   const initialize = useCallback(async () => {
     try {
       const accessToken = sessionStorage.getItem(STORAGE_KEY);
-
-      if (accessToken && isValidToken(accessToken)) {
-        setSession(accessToken);
-
-        const response = await axios.get(endpoints.auth.me);
-
-        const { user } = response.data;
-
+      const userData = window.localStorage.getItem("user");
+      if (userData && accessToken && isValidToken(accessToken)) {
+        setSession(accessToken, "3", JSON.parse(userData)?.agents[0].vendor_id || "",);
+        const response = await axios.get(endpoints.auth.me + '/' + JSON.parse(userData)?.id);
+        const  user  = response.data;
         dispatch({
           type: 'INITIAL',
           payload: {

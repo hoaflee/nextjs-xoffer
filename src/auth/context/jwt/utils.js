@@ -57,11 +57,12 @@ export const tokenExpired = (exp) => {
 
 // ----------------------------------------------------------------------
 
-export const setSession = (accessToken) => {
+export const setSession = (accessToken, roleId, vendorId) => {
   if (accessToken) {
     sessionStorage.setItem('accessToken', accessToken);
-
     axios.defaults.headers.common.Authorization = `Bearer ${accessToken}`;
+    axios.defaults.headers.common['Role-Id'] = roleId;
+    axios.defaults.headers.common['Vendor-Id'] = vendorId;
 
     // This function below will handle when token is expired
     const { exp } = jwtDecode(accessToken); // ~3 days by xOffers server
