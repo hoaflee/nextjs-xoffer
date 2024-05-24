@@ -2,11 +2,11 @@ import PropTypes from 'prop-types';
 
 import axios, { endpoints } from 'src/utils/axios';
 
+import { HOST_DOMAIN } from 'src/config-global';
+
 import { LoginDialogProvider } from 'src/components/settings';
 
 import { CampaignDetailsView } from 'src/sections/campaign/view';
-
-import { HOST_DOMAIN } from 'src/config-global';
 // ----------------------------------------------------------------------
 
 // https://nextjs.org/docs/app/building-your-application/optimizing/metadata

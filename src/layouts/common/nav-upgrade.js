@@ -1,20 +1,20 @@
-import Box from '@mui/material/Box';
+// import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
-import Button from '@mui/material/Button';
-import Avatar from '@mui/material/Avatar';
-import Typography from '@mui/material/Typography';
+// import Button from '@mui/material/Button';
+// import Avatar from '@mui/material/Avatar';
+// import Typography from '@mui/material/Typography';
 
-import { paths } from 'src/routes/paths';
+// import { paths } from 'src/routes/paths';
 
-import { useMockedUser } from 'src/hooks/use-mocked-user';
+// import { useMockedUser } from 'src/hooks/use-mocked-user';
 
-import Label from 'src/components/label';
+// import Label from 'src/components/label';
 import LoginButton from './login-button';
 
 // ----------------------------------------------------------------------
 
 export default function NavUpgrade() {
-  const { user } = useMockedUser();
+  // const { user } = useMockedUser();
 
   return (
     <Stack
