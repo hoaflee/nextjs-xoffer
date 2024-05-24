@@ -60,7 +60,7 @@ export function AuthProvider({ children }) {
       const accessToken = sessionStorage.getItem(STORAGE_KEY);
       const userData = window.localStorage.getItem("user");
       if (userData && accessToken && isValidToken(accessToken)) {
-        setSession(accessToken, "3", JSON.parse(userData)?.agents[0].vendor_id || "",);
+        setSession(accessToken, "3", JSON.parse(userData)?.agents[0].vendor_id || "");
         const response = await axios.get(endpoints.auth.me + '/' + JSON.parse(userData)?.id);
         const  user  = response.data;
         dispatch({
@@ -97,23 +97,24 @@ export function AuthProvider({ children }) {
 
   // LOGIN
   const login = useCallback(async (email, password) => {
-    const data = {
+    const dataLogin = {
       email,
       password,
+      ref_code: '',
+      device_token: ''
     };
 
-    const response = await axios.post(endpoints.auth.login, data);
+    const response = await axios.post(endpoints.auth.loginUser, dataLogin);
+    const dataRes = response.data;
 
-    const { accessToken, user } = response.data;
-
-    setSession(accessToken);
-
+    setSession(dataRes.token,"3", dataRes.data?.agents[0].vendor_id || "");
+    window.localStorage.setItem("user", JSON.stringify(dataRes.data));
     dispatch({
       type: 'LOGIN',
       payload: {
         user: {
-          ...user,
-          accessToken,
+          ...dataRes.data,
+          accessToken: dataRes.token,
         },
       },
     });

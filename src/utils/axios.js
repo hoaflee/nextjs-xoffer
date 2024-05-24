@@ -36,7 +36,8 @@ export const endpoints = {
     me: '/v1/users',
     login: '/api/auth/login',
     register: '/api/auth/register',
-    loginTon: '/v1/login-ton'
+    loginTon: '/v1/login-ton',
+    loginUser: '/v1/login-user'
   },
   mail: {
     list: '/api/mail/list',
