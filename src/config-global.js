@@ -8,6 +8,7 @@ export const TMP_VENDOR_ID = process.env.NEXT_PUBLIC_FAKE_VENDOR_ID;
 // ----------------------------------------------------------------------
 
 export const HOST_API = process.env.NEXT_PUBLIC_HOST_API;
+export const HOST_DOMAIN = process.env.NEXT_PUBLIC_APP_DOMAIN;
 export const ASSETS_API = process.env.NEXT_PUBLIC_ASSETS_API;
 
 export const FIREBASE_API = {
