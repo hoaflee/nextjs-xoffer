@@ -9,6 +9,7 @@ import { paths } from 'src/routes/paths';
 import { useMockedUser } from 'src/hooks/use-mocked-user';
 
 import Label from 'src/components/label';
+import LoginButton from './login-button';
 
 // ----------------------------------------------------------------------
 
@@ -23,7 +24,7 @@ export default function NavUpgrade() {
         textAlign: 'center',
       }}
     >
-      <Stack alignItems="center">
+      {/* <Stack alignItems="center">
         <Box sx={{ position: 'relative' }}>
           <Avatar src={user?.photoURL} alt={user?.displayName} sx={{ width: 48, height: 48 }}>
             {user?.displayName?.charAt(0).toUpperCase()}
@@ -58,7 +59,8 @@ export default function NavUpgrade() {
         <Button variant="contained" href={paths.minimalUI} target="_blank" rel="noopener">
           Upgrade to Pro
         </Button>
-      </Stack>
+      </Stack> */}
+      <LoginButton />
     </Stack>
   );
 }
